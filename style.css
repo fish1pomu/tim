@@ -17,3 +17,13 @@ body{
     max-width: 300px;
     margin: 0 auto;
 }
+#carouselCharacter {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-inner img {
+    max-width: 200px; 
+    height: auto;
+    margin: auto; 
+}
