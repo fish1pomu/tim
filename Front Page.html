@@ -8,26 +8,28 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div id="header" class="text-center mt-3 row justify-content-center">
-      <div class = "col-lg-7 text center">
-        <h1>Dino Menjelajah Nusantara</h1> <!--Judul game sementara-->
-        <img src="images/logo.png" alt="Logo" class="img-fluid">
+    <div class="container">
+        <div id="header" class="text-center mt-3 row justify-content-center">
+            <div class = "col-lg-7 text center">
+                <h1>Dino Menjelajah Nusantara</h1> <!--Judul game sementara-->
+                <img src="Assets/logo.png" id="logo" alt="Logo" class="img-fluid" style="max-width: 100px;"> <!--mungkin gw yg bego tp gw gk bs bikin ini di css bruh makanya gw pake inline -Ben-->
+            </div>
+        </div>
         <hr>            
-        <h1>Choose your Charachter</h1>
+        <h1 class="text-center">Choose your Character</h1>
         <div id="carouselCharacter" class="carousel slide text-center justify-content-center align-items-center">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="Assets/undertale-frisk.gif" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="Assets/undertale-frisk (1).gif" class="d-block w-100" alt="...">
+              <img src="Assets/undertale-frisk-right.gif" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="Assets/undertale-frisk back.gif" class="d-block w-100" alt="...">
+              <img src="Assets/undertale-frisk-back.gif" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="Assets/undertale-frisk left.gif" class="d-block w-100" alt="...">
+              <img src="Assets/undertale-frisk-left.gif" class="d-block w-100" alt="...">
             </div>
           </div>
           <div class = "pe-0 ps-0">
@@ -44,10 +46,10 @@
           </div>
         </div>
         <input type="text" id="yourName" class="form-control text-center mt-3" placeholder="Enter your name here">
-        <button type="button" class="btn btn-primary mt-3">Choose</button>
-      </div>
+        <div class="text-center mt-3">
+            <a href="game.html" id="buttonStart" class="btn btn-primary btn-lg mt-3">Start Game</a>
+        </div>
     </div>
-  </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
