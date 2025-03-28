@@ -12,17 +12,6 @@ body{
   background-position: center center;
 }
 
-#carouselCharacter {
-  display: flex;
-  justify-content: center;
-}
-
-.carousel-inner img {
-  max-width: 200px; 
-  height: auto;
-  margin: auto; 
-}
-
 #yourName {
   max-width: 300px;
   margin: 0 auto;
@@ -31,3 +20,8 @@ body{
 #buttonStart {
   margin: 0 auto;
 }
+
+#map{
+  background-image: url('Assets/background.jpg');
+  min-width: 100%;
+} /*sumpah gw gk tau knp ini gk bs anj gw pusing -Ben*/
