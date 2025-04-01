@@ -6,37 +6,50 @@
     <title>Choose your character</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        let storedName = localStorage.getItem("playerName");
+        if (storedName) {
+            document.getElementById("player-name").innerText = storedName;
+        }
+    });
+    </script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .game-container { text-align: center; padding: 20px; position: relative; width: 75%; float: left; }
+        .location { width: 120px; height: 120px; border: 2px solid black; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; }
+        .character { width: 50px; height: 50px; position: absolute; transition: 0.2s linear; }
+        .btn-group-vertical { width: 100%; }
+        .nav-arrows { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); }
+        .money, .status { font-weight: bold; }
+        .activity-panel { width: 25%; float: right; padding: 20px; background: white; border-left: 2px solid black; min-height: 100vh; }
+        .activity-panel h3 { text-align: center; }
+        .activity-buttons { margin-top: 20px; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div id="header" class="text-center mt-3 row justify-content-center">
-            <div class = "col-lg-7 text center">
-                <h1>Dino Menjelajah Nusantara</h1> <!--Judul game sementara-->
-                <img src="Assets/logo.png" id="logo" alt="Logo" class="img-fluid" style="max-width: 100px;"> <!--mungkin gw yg bego tp gw gk bs bikin ini di css bruh makanya gw pake inline -Ben-->
-            </div>
-        </div>
-        <div id="game" class="container-fluid">
-            <div class="row justify-content-center align-items-center text-center mt-3">
-                <div id="gameArea" class="col-lg-9">
-                    <div id="status" class="mb-3">
-                        <h2 id="statusText">Welcome to the game!</h2> <!--gw nyerah anj design ini, gw keknya ngurus javascriptnya aja makasih -Ben-->
-                    <div id="map" class="row d-flex justify-content-center align-items-center">
-                        <img src="Assets/undertale-frisk-right.gif" id="character" alt="Character" class="img-fluid" style="max-width: 40px; position: absolute;">
-                    </div>
-                </div>
-                <div id="controls" class="col-lg-3"> 
-                    <div id="controlButtons" class="d-flex flex-column align-items-center">
-                        <button id="up" class="btn btn-primary mb-2">Up</button>
-                        <div class="d-flex justify-content-center mb-2">
-                            <button id="left" class="btn btn-primary me-2">Left</button>
-                            <button id="right" class="btn btn-primary ms-2">Right</button>
-                        </div>
-                        <button id="down" class="btn btn-primary">Down</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <nav class="navbar navbar-light bg-light px-3">
+        <span class="navbar-brand">Ucup Menjelajah Nusantara</span>
+        <span id="greeting" class="me-2"></span> <span id="player-name">John Doe</span>
+        <span class="status">🍖 Food: <span id="food">100</span> | 🛏️ Energy: <span id="energy">100</span></span>
+        <span class="money">💰 <span id="money">230000</span></span>
+    </nav>
+    
+    <div id="game-container" class="container">
+        <div class="location" id="home" style="top: 100px; left: 200px;">Home</div>
+        <div class="location" id="beach" style="top: 100px; left: 400px;">Beach</div>
+        <div class="location" id="lake" style="top: 250px; left: 100px;">Lake</div>
+        <div class="location" id="temple" style="top: 250px; left: 300px;">Temple</div>
+        <div class="location" id="mountain" style="top: 250px; left: 500px;">Mountain</div>
+        <img src="character.png" id="character" class="character" style="top: 100px; left: 200px;" alt="Character">
     </div>
+    
+    <div class="activity-panel">
+        <h3>Available Activities</h3>
+        <div class="activity-buttons" id="activity-buttons"></div>
+    </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="script.js"></script>
 </body>
 </html>

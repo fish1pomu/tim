@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div id="header" class="text-center mt-3 row justify-content-center">
-            <div class = "col-lg-7 text center">
+            <div class = "col-lg-7 text-center">
                 <h1>Dino Menjelajah Nusantara</h1> <!--Judul game sementara-->
                 <img src="Assets/logo.png" id="logo" alt="Logo" class="img-fluid" style="max-width: 100px;"> <!--mungkin gw yg bego tp gw gk bs bikin ini di css bruh makanya gw pake inline -Ben-->
             </div>
@@ -32,24 +32,26 @@
               <img src="Assets/undertale-frisk-left.gif" class="d-block w-100" alt="..."  style="max-width: 100px;">
             </div>
           </div>
-          <div class = "pe-0 ps-0">
+          <div class="pe-0 ps-0">
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselCharacter" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
           </div>
-          <div class = "pe-0 ps-0">
+          <div class="pe-0 ps-0">
             <button class="carousel-control-next" type="button" data-bs-target="#carouselCharacter" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
         </div>
-        <input type="text" id="yourName" class="form-control text-center mt-3" placeholder="Enter your name here">
         <div class="text-center mt-3">
-            <a href="game.html" id="buttonStart" class="btn btn-primary btn-lg mt-3">Start Game</a>
+          <input type="text" id="yourName" class="form-control" placeholder="Enter your name" required>
+          <button class="btn btn-primary mt-3" id="startGameButton" onclick="savePlayerName()">Start Game</button>
         </div>
     </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="script.js" defer></script>
+
 </body>
 </html>
