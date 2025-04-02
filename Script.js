@@ -1,11 +1,3 @@
-function savePlayerName() {
-    let playerName = document.getElementById("yourName").value;
-    if (playerName.trim() !== "") {
-        localStorage.setItem("playerName", playerName);
-        window.location.href = "game.html";  // Redirect to the game page
-    }
-}
-
 let character = document.getElementById("character");
 let money = document.getElementById("money");
 let food = document.getElementById("food");
