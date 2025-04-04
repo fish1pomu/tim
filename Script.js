@@ -1,38 +1,104 @@
-let character = document.getElementById("character");
-let money = document.getElementById("money");
-let food = document.getElementById("food");
-let energy = document.getElementById("energy");
-let activityButtons = document.getElementById("activity-buttons");
-let movementInterval;
+//CharSelect Data to game screen
+var url = window.location.href;
+var urlObject = new URL(url);
+var params = new URLSearchParams(urlObject.search);
+var charValue = params.get('charselect');
+var nameValue = params.get('yourName');
+let ChoosenCharacter = charValue;
+let Username = nameValue;
 
-function moveCharacter(x, y) {
-    let newX = character.offsetLeft + x;
-    let newY = character.offsetTop + y;
-    character.style.left = newX + "px";
-    character.style.top = newY + "px";
-    checkLocation(newX, newY);
+const character = document.getElementById("character");
+const money = document.getElementById("money");
+const food = document.getElementById("food");
+const energy = document.getElementById("energy");
+const activityButtons = document.getElementById("activity-buttons");
+const map = document.getElementById("game-box");
+
+document.querySelector('span#player-name').textContent = `${Username}`;
+let x = 0;
+let y = 0;
+let vyu = 0;
+let vyd = 0;
+let vxl = 0;
+let vxr = 0;
+const speed = 3;
+
+
+// Direction tracking
+let currentDirection = 'down';
+let lastDirection = 'down';
+
+// Keyboard controls
+document.addEventListener("keydown", function(e) {
+    if (e.key == "ArrowRight" || e.key == "d") {
+        vxr = speed;
+        currentDirection = 'right';
+    } else if (e.key == "ArrowLeft" || e.key == "a") {
+        vxl = -speed;
+        currentDirection = 'left';
+    } else if (e.key == "ArrowUp" || e.key == "w") {
+        vyu = -speed;
+        currentDirection = 'up';
+    } else if (e.key == "ArrowDown" || e.key == "s") {
+        vyd = speed;
+        currentDirection = 'down';
+    }
+
+    // Sprite Change
+    if (currentDirection != lastDirection){
+        character.src = `Assets/${ChoosenCharacter}/${currentDirection}.gif`;
+        lastDirection = currentDirection;
+    }
+});
+
+document.addEventListener("keyup", function(e) {
+    if (e.key == "ArrowRight" || e.key == "d") vxr = 0;
+    else if (e.key == "ArrowLeft" || e.key == "a") vxl = 0;
+    else if (e.key == "ArrowUp" || e.key == "w") vyu = 0;
+    else if (e.key == "ArrowDown" || e.key == "s") vyd = 0;
+});
+
+// Keyboard Controls
+function update() {
+    x += vxl + vxr;
+    y += vyu + vyd;
+    
+    // Calculate boundaries
+    const maxX = map.offsetWidth - character.offsetWidth;
+    const maxY = map.offsetHeight - character.offsetHeight;
+    
+
+    // Keep character within bounds
+    // x = Math.max(0, Math.min(x, maxX));
+    // y = Math.max(0, Math.min(y, maxY));
+    
+    // Apply movement
+    character.style.transform = `translate(${x}px, ${y}px)`;
+    
+    // Check location for activities
+    checkLocation(x, y);
+    
+    requestAnimationFrame(update);
 }
 
-function startMoving(x, y) {
-    if (movementInterval) return;
-    movementInterval = setInterval(() => moveCharacter(x, y), 100);
-}
-
-function stopMoving() {
-    clearInterval(movementInterval);
-    movementInterval = null;
-}
-
-function checkLocation(x, y) {
-    let locations = document.getElementsByClassName("location");
+// Location checking 
+function checkLocation() {
+    const charRect = character.getBoundingClientRect();
+    const locations = document.getElementsByClassName("location");
+    
     for (let loc of locations) {
-        let rect = loc.getBoundingClientRect();
-        let charRect = character.getBoundingClientRect();
-        if (charRect.left < rect.right && charRect.right > rect.left && charRect.top < rect.bottom && charRect.bottom > rect.top) {
+        const rect = loc.getBoundingClientRect();
+        
+        if (charRect.left < rect.right && 
+            charRect.right > rect.left && 
+            charRect.top < rect.bottom && 
+            charRect.bottom > rect.top) {
             displayActivities(loc.id);
+            break; // Exit after first match
         }
     }
 }
+
 
 function displayActivities(location) {
     let activities = {
@@ -67,51 +133,17 @@ function displayActivities(location) {
     }
 }
 
-function getJakartaTime() {
+function updateGreeting() {
     let options = { timeZone: "Asia/Jakarta", hour12: false, hour: "numeric" };
     let hour = new Intl.DateTimeFormat("en-US", options).format(new Date());
 
-    if (hour >= 5 && hour < 12) return "Good Morning";
-    if (hour >= 12 && hour < 18) return "Good Afternoon";
-    return "Good Evening";
+    if (hour >= 5 && hour < 12) document.getElementById("greeting").innerText = "Good Morning";
+    else if (hour >= 12 && hour < 18) document.getElementById("greeting").innerText = "Good Afternoon";
+    else document.getElementById("greeting").innerText = "Good Evening";
 }
 
-function updateGreeting() {
-    document.getElementById("greeting").innerText = getJakartaTime();
-}
 
-window.onload = updateGreeting;
-
-let keys = {};
-
-document.addEventListener("keydown", function(event) {
-    keys[event.key] = true;
-});
-
-document.addEventListener("keyup", function(event) {
-    keys[event.key] = false;
-});
-
-function gameLoop() {
-    let dx = 0, dy = 0;
-    
-    if (keys["ArrowUp"] || keys["w"]) dy -= 20;
-    if (keys["ArrowDown"] || keys["s"]) dy += 20;
-    if (keys["ArrowLeft"] || keys["a"]) dx -= 20;
-    if (keys["ArrowRight"] || keys["d"]) dx += 20;
-    
-    if (dx !== 0 || dy !== 0) moveCharacter(dx, dy);
-    
-    requestAnimationFrame(gameLoop);
-}
-
-gameLoop();
-
-document.addEventListener("keyup", stopMoving);
-
-document.addEventListener("DOMContentLoaded", function () {
-    let storedName = localStorage.getItem("playerName");
-    if (storedName) {
-        document.getElementById("player-name").innerText = storedName;
-    }
-});
+window.onload = function() {
+    updateGreeting();
+    update();
+};
