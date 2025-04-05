@@ -147,3 +147,10 @@ window.onload = function() {
     updateGreeting();
     update();
 };
+
+window.addEventListener("keydown", function(event) {
+    const keysToBlock = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "a", "s", "d", " "];
+    if (keysToBlock.includes(event.key.toLowerCase())) {
+        event.preventDefault();
+    }
+});
