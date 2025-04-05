@@ -1,27 +1,30 @@
 @media (min-width: 1200px) {
+  /* Add your CSS rules here */
   .container {
-	max-width: 970px;
-  }
+    max-width: 970px;
+    }
 }
 
 body{
-  background-image: url('Assets/background2.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
+    background-image: url('Assets/Background2.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
 }
 
 #yourName {
-  max-width: 300px;
-  margin: 0 auto;
+    max-width: 300px;
+    margin: 0 auto;
+}
+#carouselCharacter {
+    display: flex;
+    justify-content: center;
 }
 
-#buttonStart {
-  margin: 0 auto;
+.carousel-inner img {
+    max-width: 200px; 
+    max-height: 300px;
+    height: auto;
+    margin: auto; 
 }
-
-#map{
-  background-image: url('Assets/background.jpg');
-  min-width: 100%;
-} /*sumpah gw gk tau knp ini gk bs anj gw pusing -Ben*/
